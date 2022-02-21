@@ -63,7 +63,7 @@
     <div class="container">
         <div class="row justify-content-center">
             {%for leader in leader_list%}
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 h-100 margin">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 h-100 margin bg">
                 <div class="news-box">
                     <figure><img class="img-responsive" src="{{leader.leaders_pic.url|default_if_none:'#'}}" alt="img"  /></figure>
                     <h3><span class="text-danger">Name</span> : {{leader.name}}</h3>

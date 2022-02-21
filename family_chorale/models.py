@@ -15,7 +15,7 @@ class Member(models.Model):
     voice_sample = models.FileField(upload_to='media/sample/',null=True,help_text='sample of your voice')
     
     def get_absolute_url(self):
-        return reverse('index')
+        return reverse('member-added')
     def __str__(self) -> str:
         return self.name
 

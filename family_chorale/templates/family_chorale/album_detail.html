@@ -83,20 +83,33 @@
                     <div class="single_players"></div>
                     {%if album.track_set.all%}
                     {%for track in album.track_set.all%}
-
-
+                    {%if track.audio%}
                     <div class="mt-2 mb-4 text-white bg-dark rounded-3">
                         <div class="container-fluid py-2 ">
                             <h2 class="display-6 text-danger">{{track.name}}</h2>
                             <hr class="bg-light">
                             <div class="row mx-auto pb-2 ">
                                 <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
-                                    href="{{track.get_absolute_url}}">Watch</a></div>
-                                <div class="col-7 bg-dark d-flex" ><audio  src="{{track.audio.url}}" controls></audio></div>
+                                        href="{{track.get_absolute_url}}">Watch</a></div>
+                                <div class="col-7 bg-dark d-flex"><audio src="{{track.audio.url}}" controls></audio>
+                                </div>
                             </div>
                         </div>
                     </div>
-
+                    {%else%}
+                    <div class="mt-2 mb-4 text-white bg-dark rounded-3">
+                        <div class="container-fluid py-2 ">
+                            <h2 class="display-6 text-danger">{{track.name}}</h2>
+                            <hr class="bg-light">
+                            <div class="row mx-auto pb-2 ">
+                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
+                                        href="{{track.get_absolute_url}}">Watch Video</a></div>
+                                <div class="col-7 bg-dark d-flex"><span>No audio file available</span></audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
 
 
                     {%endfor%}

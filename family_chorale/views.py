@@ -44,3 +44,6 @@ class MemberCreateView(generic.CreateView):
 class EventGoerCreateView(generic.CreateView):
     model = EventGoer
     fields = '__all__'
+
+class MemberAddedView(generic.TemplateView):
+    template_name = 'family_chorale/member_added.html'

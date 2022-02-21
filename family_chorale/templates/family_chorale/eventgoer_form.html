@@ -1,0 +1,77 @@
+{%extends 'base.html'%}
+{%load static%}
+{% load crispy_forms_tags %}
+{%block titlt%}<title>Events</title>{%endblock%}
+{%block link%}
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about_responsive.css'%}">
+{%endblock%}
+{%block header%}
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="#">Family Chorale</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'index'%}">Home</a></li>
+                        <li><a href="{%url 'gallery'%}">Gallery</a></li>
+                        <li><a href="{%url 'music'%}">Music</a></li>
+                        <li  class="active"><a href="{%url 'events'%}">Events</a></li>
+                        <li><a href="{%url 'leaders'%}">Leaders</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {%endblock%}
+{%block home%}
+<!-- Home -->
+
+<div class="home">
+    <div class="home_inner">
+
+        <div class="parallax_background parallax-window" data-parallax="scroll"
+            data-image-src="{%static 'images/index.jpg'%}" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="home_content text-center">
+                <div class="home_subtitle">Attend  </div>
+                <div class="home_title">Event</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{%block main%}
+<br>
+<br>
+<div class="container">
+    <br>
+    <br>
+    <div class="jumbotron bg-dark">
+        <h3 class="display-5 text-warning">Sign Up for Upcoming Event</h3>
+        <p class="lead">Fill in all your details below</p>
+        <form method="POST" role="form" enctype="multipart/form-data">
+            <div class="form-group">
+                {{form|crispy}}
+                {%csrf_token%}
+            </div>
+    
+            <button type="submit" class="btn btn-warning btn-outline-danger">Submit</button>
+        </form>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,325 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px
+11. 539px
+12. 479px
+13. 400px
+
+******************************/
+
+/************
+1. 1600px
+************/
+
+@media only screen and (max-width: 1600px)
+{
+	
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1440px)
+{
+	
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px)
+{
+	.single_info
+	{
+		width: calc(100% - 35px);
+		left: auto;
+	}
+	.single_content
+	{
+		left: auto;
+	}
+	.video_container
+	{
+		width: 100%;
+		left: auto;
+	}
+	.newsletter_container
+	{
+		width: 450px;
+	}
+	.footer_lists
+	{
+		width: 575px;
+	}
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px)
+{
+	
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px)
+{
+	.milestone
+	{
+		padding-left: 100px;
+	}
+	.footer_lists
+	{
+		width: 667px;
+	}
+	.copyright_bar
+	{
+		margin-top: 60px;
+	}
+	.newsletter_container
+	{
+		width: 667px;
+	}
+}
+
+/************
+4. 1100px
+************/
+
+@media only screen and (max-width: 1100px)
+{
+	
+}
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px)
+{
+	
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px)
+{
+	.main_nav
+	{
+		display: none;
+	}
+	.log_reg
+	{
+		right: 120px;
+	}
+	.hamburger
+	{
+		display: block;
+	}
+	.single_info
+	{
+		width: 100%;
+	}
+	.single_content_col
+	{
+		margin-top: 85px;
+	}
+	.single_player_container
+	{
+		width: 100%;
+		left: auto;
+	}
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px)
+{
+	
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px)
+{
+	
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px)
+{
+	
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px)
+{
+	.home_title
+	{
+		font-size: 56px;
+	}
+	.footer_lists
+	{
+		width: 100%;
+	}
+	.newsletter_container
+	{
+		width: 100%;
+	}
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px)
+{
+	h1
+	{
+		font-size: 36px;
+	}
+	.home
+	{
+		height: 345px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.header_content
+	{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.logo
+	{
+		left: 15px;
+	}
+	.home_container
+	{
+		bottom: 71px;
+	}
+	.home_title
+	{
+		font-size: 36px;
+	}
+	.log_reg
+	{
+		display: none;
+	}
+	.menu_log_reg
+	{
+		display: block;
+	}
+	.song_duration
+	{
+		font-size: 14px !important;
+	}
+	.single_player_container
+	{
+		width: 100%;
+		left: auto;
+	}
+	.jp-type-single .player_details
+	{
+		padding-left: 20px;
+		padding-right: 22px;
+	}
+	.jp-type-single .player_controls .jp-interface
+	{
+		padding-left: 20px;
+		padding-right: 22px;
+	}
+	.footer
+	{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.newsletter_input
+	{
+		height: 40px;
+	}
+	.newsletter_button
+	{
+		width: 109px;
+		height: 40px;
+	}
+	.newsletter_title h2
+	{
+		font-size: 24px;
+	}
+	.footer_list
+	{
+		width: 100%;
+	}
+	.footer_list:not(:last-child)
+	{
+		margin-bottom: 60px;
+	}
+}
+
+/************
+11. 539px
+************/
+
+@media only screen and (max-width: 539px)
+{
+	
+}
+
+/************
+12. 480px
+************/
+
+@media only screen and (max-width: 480px)
+{
+	
+}
+
+/************
+13. 479px
+************/
+
+@media only screen and (max-width: 479px)
+{
+	
+}
+
+/************
+14. 400px
+************/
+
+@media only screen and (max-width: 400px)
+{
+	
+}

@@ -1,0 +1,90 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block titlt%}<title>Leaders</title>{%endblock%}
+{%block link%}
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about_responsive.css'%}">
+{%endblock%}
+{%block header%}
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="#">Family Chorale</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'index'%}">Home</a></li>
+                        <li><a href="{%url 'gallery'%}">Gallery</a></li>
+                        <li><a href="{%url 'music'%}">Music</a></li>
+                        <li><a href="{%url 'events'%}">Events</a></li>
+                        <li  class="active"><a href="{%url 'leaders'%}">Leaders</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {%endblock%}
+{%block home%}
+<!-- Home -->
+
+<div class="home">
+    <div class="home_inner">
+
+        <div class="parallax_background parallax-window" data-parallax="scroll"
+            data-image-src="{%static 'images/contact.jpg'%}" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="home_content text-center">
+                <div class="home_subtitle">Our</div>
+                <div class="home_title">Leaders</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{%block main%}
+<br>
+<br>
+<br>
+{%if leader_list%}
+<div class="Lastestnews blog">
+    <div class="container">
+        <div class="row justify-content-center">
+            {%for leader in leader_list%}
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 h-100 margin">
+                <div class="news-box">
+                    <figure><img class="img-responsive" src="{{leader.leaders_pic.url|default_if_none:'#'}}" alt="img"  /></figure>
+                    <h3><span class="text-danger">Name</span> : {{leader.name}}</h3>
+                    <h3><span class="text-warning">Position</span> : {{leader.position}}</h3>
+                                                            
+                </div>
+            </div>
+            <hr class="bg-light">
+            {%endfor%}
+        </div>
+    </div>
+</div>
+</div>
+{%else%}
+<div class="container">
+    <div class="jumbotron bg-dark">
+        <h1 class="display-4 text-danger">No records found</h1>
+
+        <hr class="my-4">
+        <p>There are no records in the database</p>
+    </div>
+</div>
+{%endif%}
+{%endblock%}

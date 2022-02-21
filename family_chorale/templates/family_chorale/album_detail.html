@@ -1,0 +1,134 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block titlt%}<title>Album</title>{%endblock%}
+{%block link%}
+<link rel="stylesheet" type="text/css" href="{%static 'styles/single.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'styles/single_responsive.css'%}">
+{%endblock%}
+{%block header%}
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="#">Family Chorale</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'index'%}">Home</a></li>
+                        <li><a href="{%url 'gallery'%}">Gallery</a></li>
+                        <li  class="active"><a href="{%url 'music'%}">Music</a></li>
+                        <li><a href="{%url 'events'%}">Events</a></li>
+                        <li><a href="{%url 'leaders'%}">Leaders</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {%endblock%}
+{%block home%}
+<!-- Home -->
+
+<div class="home">
+    <div class="home_inner">
+        <!-- Image artist: https://unsplash.com/@yoannboyer -->
+        <div class="parallax_background parallax-window" data-parallax="scroll"
+            data-image-src="{%static 'images/single.jpg'%}" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="home_content text-center">
+                <div class="home_subtitle">Album</div>
+                <div class="home_title">{{album.name}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+{%block main%}
+<!-- Single -->
+
+<div class="single">
+    <div class="container">
+        <div class="row">
+
+            <!-- Single Info -->
+            <div class="col-lg-5">
+                <div class="single_info">
+                    <div class="single_image"><img src="{{album.album_art.url}}" alt=""></div>
+                    <div class="single_info_list">
+                        <ul>
+                            <li><span>Release date: </span>{{album.release_date}}</li>
+                            <li><span>Tags: </span>gospel</li>
+                            <li><span>Producers: </span>{{album.producer}}</li>
+                            <li><span>No of songs: </span>{{album.track_set.count}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Content -->
+            <div class="col-lg-7 single_content_col">
+                <div class="single_content">
+                    <div class="single_text">
+                        <p> {{album.detail}}</p>
+                    </div>
+                    {%if album.track_set.all%}
+                    {%for track in album.track_set.all%}
+                    <div class="single_players">
+
+                        <div class="mt-2 mb-4 text-white bg-dark rounded-3">
+                            <div class="container-fluid py-2">
+                                <h2 class="display-6 text-danger">{{track.name}}</h2>
+                                <hr class="bg-light">
+                                <div class="row mx-auto pb-2">
+                                    <a class="btn btn-outline-light btn-lg text-center" type="button"
+                                        href="{{track.get_absolute_url}}">Play
+                                        Video</a>
+                                    <audio class="col-7 bg-dark" src="{{track.audio.url}}" controls></audio>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    {%endfor%}
+                    {%else%}
+                    <br>
+                    <br>
+                    <div class="container">
+                        <div class="jumbotron bg-dark">
+                            <h1 class="display-4 text-warning">No audio records</h1>
+                            <p class="lead">There are no audio records currently on the system.</p>
+                            <hr class="my-4">
+
+
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Video -->
+
+
+
+
+{%endblock%}
+{%block script%}
+
+<script src="{%static 'plugins/fit-vids/jquery.fitvids.js'%}"></script>
+<script src="{%static 'js/single.js'%}"></script>
+{%endblock%}

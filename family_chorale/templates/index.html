@@ -1,0 +1,194 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block main%}
+<!-- Featured Album -->
+
+<div class="featured_album">
+	<div class="background_image featured_background" style="background-image:url(images/pic4.jpg)"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-6">
+				<div class="section_title_container">
+					<div class="section_subtitle">Music</div>
+					<div class="section_title">
+						<h1>Featured Album</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row featured_row row-lg-eq-height">
+
+			<!-- Featured Album Image -->
+			<div class="col-md-6">
+				<div class="featured_album_image">
+					<div class="image_overlay"></div>
+					<div class="background_image" style="background-image:url({{album.album_art.url}});">
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Featured Album Player -->
+			<div class="col-md-6 featured_album_col mr- justify-content-center">
+				{%if album.track_set.all%}
+
+
+				<div class="single_players">
+
+					<div class="mt-2 mb-4 text-white bg-dark rounded-3">
+						<div class="container-fluid py-2">
+							{%for track in album.track_set.all%}
+							{%if track.audio%}
+							<h2 class="display-6 text-danger">{{track.name}}</h2>
+
+							<div class="row mx-auto pb-2">
+								<a class="btn btn-outline-light btn-lg text-center" type="button"
+									href="{{track.get_absolute_url}}">Play
+									Video</a>
+								<audio class="col-7 bg-dark" src="{{track.audio.url}}" controls></audio>
+							</div>
+							<hr class="bg-light">
+							{%else%}
+							<h2 class="display-6 text-danger">{{track.name}}</h2>
+
+							<div class="row mx-auto pb-2">
+								<a class="btn btn-outline-light btn-lg text-center" type="button"
+									href="{{track.get_absolute_url}}">Play
+									Video</a>
+								
+							</div>
+							<hr class="bg-light">
+							{%endif%}
+							{%endfor%}
+						</div>
+					</div>
+
+
+				</div>
+
+
+
+				{%else%}
+				<br>
+				<br>
+				<div class="container">
+					<div class="jumbotron bg-dark">
+						<h1 class="display-4 text-warning">No audio records</h1>
+						<p class="lead">There are no audio records currently on the system.</p>
+						<hr class="my-4">
+
+
+					</div>
+				</div>
+				{%endif%}
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Shows -->
+
+<div class="shows">
+	<div class="container">
+		<div class="row" style="z-index:10;">
+			<div class="col">
+				<div class="section_title_container">
+					<div class="section_subtitle">Events</div>
+					<div class="section_title">
+						<h1>Upcoming Shows</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row shows_row">
+			{%if events%}
+			<!-- Shows List -->
+			<div class="col-lg-8 order-lg-1 order-2 shows_list_col">
+				<div class="shows_list_container">
+					<ul class="shows_list">
+						{%for event in events%}
+						{%if not event.expired%}
+						<!-- Show -->
+						<li class="d-flex flex-row align-items-center justify-content-start">
+							<div>
+								<div class="show_date">{{event.date.day}}/{{event.date.month}}</div>
+							</div>
+							<div
+								class="show_info d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-start justify-content-center">
+								<div class="show_name"><a href="#">{{event.title}}</a></div>
+								<div class="show_location">{{event.location}}</div>
+							</div>
+
+							<div class="ml-auto">
+								<div class="show_shop trans_200"><a href="{%url 'attend'%}">Attend</a></div>
+							</div>
+
+						</li>
+						{%endif%}
+						{%endfor%}
+
+
+					</ul>
+				</div>
+			</div>
+			{%endif%}
+			<!-- Shows Image -->
+			<div class="col-lg-4 order-lg-2 order-1">
+				<div class="shows_image">
+					<div class="image_overlay"></div>
+					<img src="{{feat_event.poster.url}}" alt="https://unsplash.com/@anthonydelanoix">
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Artist -->
+
+<div class="artist">
+	<div class="container">
+		<div class="row">
+
+			<!-- Artist Image -->
+			<div class="col-lg-4 artist_image_col">
+				<div class="artist_image">
+					<img src="{%static 'images/pic4.jpg'%}" alt="">
+				</div>
+			</div>
+
+			<!-- Artist Content -->
+			<div class="col-lg-7 offset-lg-1">
+				<div class="artist_content">
+					<div class="section_title_container">
+						<div class="section_subtitle">About Us</div>
+						<div class="section_title">
+							<h1>The Family Chorale Kenya</h1>
+						</div>
+					</div>
+					<div class="artist_text">
+						<p> In vitae nisi aliquam, scelerisque leo a, volutpat sem. Vivamus rutrum dui fermentum
+							eros hendrerit, id lobortis leo volutpat. Maecenas sollicitudin est in libero
+							pretium
+							interdum. Nullam volutpat dui sem, ac congue purus luctus nec. Curabitur luctus
+							luctus
+							erat, sit amet facilisis quam congue quis. Quisque ornare luctus erat id dignissim.
+							Nullam ac nunc quis ex porttitor luctus.</p>
+						<p>Integer sed facilisis eros. In iaculis rhoncus velit in malesuada. In hac habitasse
+							platea dictumst. Fusce erat ex, consectetur sit amet ornare suscipit, porta et erat.
+							Donec nec nisi in nibh commodo laoreet. Mauris dapibus justo ut feugiat malesuada.
+							Fusce
+							ultricies ante tortor, non vestibulum est feugiat ut.</p>
+					</div>
+					<div class="artist_sig"><img src="{%static 'images/sig.png'%}" alt=""></div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{%endblock%}

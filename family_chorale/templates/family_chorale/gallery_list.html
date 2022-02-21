@@ -1,0 +1,105 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block titlt%}<title>Gallery</title>{%endblock%}
+{%block link%}
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about_responsive.css'%}">
+{%endblock%}
+{%block header%}
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="#">Family Chorale</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'index'%}">Home</a></li>
+                        <li  class="active"><a href="{%url 'gallery'%}">Gallery</a></li>
+                        <li><a href="{%url 'music'%}">Music</a></li>
+                        <li><a href="{%url 'events'%}">Events</a></li>
+                        <li><a href="{%url 'leaders'%}">Leaders</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {%endblock%}
+{%block home%}
+<!-- Home -->
+
+<div class="home">
+	<div class="home_inner">
+
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{%static 'images/about.jpg'%}"
+			data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="home_content text-center">
+				<div class="home_subtitle">Event</div>
+				<div class="home_title">Gallery</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{%endblock%}
+
+{%block main%}
+<br>
+<br>
+<div class="container">
+	{%if gallery_list%}
+	{%regroup gallery_list by event as gallery%}
+	<div id="accordion">
+		<br>
+		{%for event in gallery%}
+		<div class="card bg-dark">
+			<div class="card-header" id="heading{{event.grouper.id}}">
+				<h5 class="mb-0">
+					<button class="btn btn-link text-danger" data-toggle="collapse"
+						data-target="#event{{event.grouper.id}}" aria-expanded="true"
+						aria-controls="event{{event.grouper.id}}">
+						{{event.grouper}}
+					</button>
+				</h5>
+			</div>
+
+
+			<div id="event{{event.grouper.id}}" class="collapse hide" aria-labelledby="heading{{event.grouper.id}}"
+				data-parent="#accordion">
+				<div class="row justify-content-center">
+					
+					{%for pic in event.list%}
+					<div class="col-lg-4 h-100" style="width:20rem;">
+						<img src="{{pic.picture.url}}" class="card-img-top" alt="...">
+						
+					</div>
+					
+					{%endfor%}
+				</div>
+			</div>
+		</div>
+		{%endfor%}
+
+
+	</div>
+	{%endif%}
+
+
+</div>
+
+
+
+{%endblock%}
+
+

@@ -1,0 +1,159 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block titlt%}<title>Events</title>{%endblock%}
+{%block link%}
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about_responsive.css'%}">
+{%endblock%}
+{%block header%}
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="#">Family Chorale</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'index'%}">Home</a></li>
+                        <li><a href="{%url 'gallery'%}">Gallery</a></li>
+                        <li><a href="{%url 'music'%}">Music</a></li>
+                        <li  class="active"><a href="{%url 'events'%}">Events</a></li>
+                        <li><a href="{%url 'leaders'%}">Leaders</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {%endblock%}
+{%block home%}
+<!-- Home -->
+
+<div class="home">
+    <div class="home_inner">
+
+        <div class="parallax_background parallax-window" data-parallax="scroll"
+            data-image-src="{%static 'images/elements.jpg'%}" data-speed="0.8"></div>
+        <div class="home_container">
+            <div class="home_content text-center">
+                <div class="home_subtitle">Event</div>
+                <div class="home_title">Calender</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{%block main%}
+<br>
+<br>
+<br>
+{%if event_list%}
+<div class="container">
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container">
+            <h1 class="display-5 text-warning">Upcoming Events</h1>
+            <hr class="my-2">
+            <p class="text-danger">Press button to mark a spot at the event and book a seat</p>
+            <p class="lead">
+            <table class="table table-striped table-inverse">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Starting Time</th>
+                        <th>Stoping Time</th>
+                        <th>Location</th>
+                        <th>Booking</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for event in event_list%}
+                    <tr>
+                        <td scope="row">{{event.title}}</td>
+                        <td>{{event.date}}</td>
+                        <td>{{event.start_time}}</td>
+                        <td>{{event.stop_time}}</td>
+                        <td>{{event.location}}</td>
+                        <td>{%if event.expired%}<a type="button" data-toggle="modal" data-target="#ev{{event.pk}}"
+                                class="btn btn-warning btn-outline-danger btn-sm disabled">Expired</a>
+                            {%else%}
+                            <a type="button" data-toggle="modal" data-target="#ev{{event.pk}}"
+                                class="btn btn-warning btn-outline-danger btn-sm">Attend</a>
+                            {%endif%}
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="ev{{event.pk}}" tabindex="-1" role="dialog"
+                        aria-labelledby="ev{{event.pk}}-label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary text-light">
+                                    <h5 class="modal-title" id="ev{{event.pk}}Title">{{event.title}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body bg-dark">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img class="img-fluid" src="{{event.poster.url}}" alt="Poster">
+                                        </div>
+                                        <div class="col-12">
+                                            <p style="color:#f0f8ff">{{event.description|safe}}</p>
+                                        </div>
+                                        <div class="col-12" style="text-align:center;">
+                                            <br>
+
+                                            <a type="button" class="btn btn-primary btn-sm btn-outline-light"
+                                                 href="{%url 'attend'%}">
+                                                <span aria-hidden="true" >Book A Seat</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </tbody>
+            </table>
+
+            </p>
+        </div>
+    </div>
+</div>
+
+{%endif%}
+{%endblock%}
+<div class="modal fade" id="ev{{event.pk}}" tabindex="-1" role="dialog" aria-labelledby="ev{{event.pk}}-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ev{{event.pk}}Title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--Modal content-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+

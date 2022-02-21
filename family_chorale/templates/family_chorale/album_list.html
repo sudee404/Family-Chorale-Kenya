@@ -1,0 +1,104 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block titlt%}<title>Album</title>{%endblock%}
+{%block link%}
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'styles/about_responsive.css'%}">
+{%endblock%}
+{%block header%}
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-center">
+                <div class="logo"><a href="#">Family Chorale</a></div>
+                <div class="log_reg">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+
+                    </ul>
+                </div>
+                <nav class="main_nav">
+                    <ul class="d-flex flex-row align-items-start justify-content-start">
+                        <li><a href="{%url 'index'%}">Home</a></li>
+                        <li><a href="{%url 'gallery'%}">Gallery</a></li>
+                        <li  class="active"><a href="{%url 'music'%}">Music</a></li>
+                        <li><a href="{%url 'events'%}">Events</a></li>
+                        <li><a href="{%url 'leaders'%}">Leaders</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger ml-auto">
+                    <div class="d-flex flex-column align-items-end justify-content-between">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {%endblock%}
+{%block home%}
+<!-- Home -->
+
+<div class="home">
+	<div class="home_inner">
+
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{%static 'images/extra.jpg'%}"
+			data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="home_content text-center">
+				<div class="home_subtitle">Music</div>
+				<div class="home_title">Albums</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{%endblock%}
+
+
+{%block main%}
+	<!-- Discs -->
+{%if album_list%}
+	<div class="discs">
+		<div class="container">
+			<div class="row discs_row">
+				{%for album in album_list%}
+				<!-- Disc -->
+				<div class="col-xl-4 col-md-6">
+					<div class="disc">
+						<a href="{{album.get_absolute_url}}">
+							<div class="disc_image"><img src="{{album.album_art.url}}" alt="Album Art"></div>
+							<div class="disc_container">
+								<div>
+									<div class="disc_content_2 d-flex flex-column align-items-center justify-content-center mx-auto">
+										<div >
+											<div class="disc_title">{{album.name}}</div>
+											<div class="disc_subtitle">Released : {{album.release_date}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				{%endfor%}	
+				{%else%}
+				<br>
+				<br>
+				<div class="container">
+					<div class="jumbotron bg-dark">
+						<h1 class="display-4">No records</h1>
+						<p class="lead">There are no records currently on the system.</p>
+						<hr class="my-4">
+						
+						
+					</div>
+				</div>		
+
+			</div>
+		</div>
+	</div>
+{%endif%}	
+{%endblock%}
+{%block script%}
+<script src="{%static 'js/about.js'%}"></script>
+{%endblock%}

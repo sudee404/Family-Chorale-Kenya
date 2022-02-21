@@ -111,7 +111,7 @@ class EventGoer(models.Model):
     event = models.ForeignKey(Event,on_delete=models.CASCADE,null=True)
 
     def get_absolute_url(self):
-        return reverse('index')
+        return reverse('member-added')
         
     def __str__(self) -> str:
         return self.name

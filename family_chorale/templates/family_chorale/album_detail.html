@@ -1,40 +1,39 @@
 {%extends 'base.html'%}
 {%load static%}
-{%block titlt%}<title>Album</title>{%endblock%}
 {%block link%}
 <link rel="stylesheet" type="text/css" href="{%static 'styles/single.css'%}">
 <link rel="stylesheet" type="text/css" href="{%static 'styles/single_responsive.css'%}">
 {%endblock%}
 {%block header%}
-        <!-- Header -->
-        <header class="header">
-            <div class="header_content d-flex flex-row align-items-center justify-content-center">
-                <div class="logo"><a href="#">Family Chorale</a></div>
-                <div class="log_reg">
-                    <ul class="d-flex flex-row align-items-start justify-content-start">
-                        <li><a href="{%url 'member-add'%}">Become a Member</a></li>
+<!-- Header -->
+<header class="header">
+    <div class="header_content d-flex flex-row align-items-center justify-content-center">
+        <div class="logo"><a href="#">Family Chorale</a></div>
+        <div class="log_reg">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="{%url 'member-add'%}">Become a Member</a></li>
 
-                    </ul>
-                </div>
-                <nav class="main_nav">
-                    <ul class="d-flex flex-row align-items-start justify-content-start">
-                        <li><a href="{%url 'index'%}">Home</a></li>
-                        <li><a href="{%url 'gallery'%}">Gallery</a></li>
-                        <li  class="active"><a href="{%url 'music'%}">Music</a></li>
-                        <li><a href="{%url 'events'%}">Events</a></li>
-                        <li><a href="{%url 'leaders'%}">Leaders</a></li>
-                    </ul>
-                </nav>
-                <div class="hamburger ml-auto">
-                    <div class="d-flex flex-column align-items-end justify-content-between">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
+            </ul>
+        </div>
+        <nav class="main_nav">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="{%url 'index'%}">Home</a></li>
+                <li><a href="{%url 'gallery'%}">Gallery</a></li>
+                <li class="active"><a href="{%url 'music'%}">Music</a></li>
+                <li><a href="{%url 'events'%}">Events</a></li>
+                <li><a href="{%url 'leaders'%}">Leaders</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger ml-auto">
+            <div class="d-flex flex-column align-items-end justify-content-between">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-        </header>
-        {%endblock%}
+        </div>
+    </div>
+</header>
+{%endblock%}
 {%block home%}
 <!-- Home -->
 
@@ -81,44 +80,45 @@
                     <div class="single_text">
                         <p> {{album.detail}}</p>
                     </div>
+                    <div class="single_players"></div>
                     {%if album.track_set.all%}
                     {%for track in album.track_set.all%}
-                    <div class="single_players">
 
-                        <div class="mt-2 mb-4 text-white bg-dark rounded-3">
-                            <div class="container-fluid py-2">
-                                <h2 class="display-6 text-danger">{{track.name}}</h2>
-                                <hr class="bg-light">
-                                <div class="row mx-auto pb-2">
-                                    <a class="btn btn-outline-light btn-lg text-center" type="button"
-                                        href="{{track.get_absolute_url}}">Play
-                                        Video</a>
-                                    <audio class="col-7 bg-dark" src="{{track.audio.url}}" controls></audio>
-                                </div>
+
+                    <div class="mt-2 mb-4 text-white bg-dark rounded-3">
+                        <div class="container-fluid py-2 ">
+                            <h2 class="display-6 text-danger">{{track.name}}</h2>
+                            <hr class="bg-light">
+                            <div class="row mx-auto pb-2 ">
+                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
+                                    href="{{track.get_absolute_url}}">Watch</a></div>
+                                <div class="col-7 bg-dark d-flex" ><audio  src="{{track.audio.url}}" controls></audio></div>
                             </div>
                         </div>
-
-
                     </div>
+
+
+
                     {%endfor%}
-                    {%else%}
-                    <br>
-                    <br>
-                    <div class="container">
-                        <div class="jumbotron bg-dark">
-                            <h1 class="display-4 text-warning">No audio records</h1>
-                            <p class="lead">There are no audio records currently on the system.</p>
-                            <hr class="my-4">
-
-
-                        </div>
-                    </div>
-                    {%endif%}
                 </div>
-            </div>
+                {%else%}
+                <br>
+                <br>
+                <div class="container">
+                    <div class="jumbotron bg-dark">
+                        <h1 class="display-4 text-warning">No audio records</h1>
+                        <p class="lead">There are no audio records currently on the system.</p>
+                        <hr class="my-4">
 
+
+                    </div>
+                </div>
+                {%endif%}
+            </div>
         </div>
+
     </div>
+</div>
 </div>
 
 <!-- Video -->

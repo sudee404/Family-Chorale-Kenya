@@ -41,22 +41,20 @@
 							{%if track.audio%}
 							<h2 class="display-6 text-danger">{{track.name}}</h2>
 
-							<div class="row mx-auto pb-2">
-								<a class="btn btn-outline-light btn-lg text-center" type="button"
-									href="{{track.get_absolute_url}}">Play
-									Video</a>
-								<audio class="col-7 bg-dark" src="{{track.audio.url}}" controls></audio>
-							</div>
+							<div class="row mx-auto pb-2 ">
+                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
+                                    href="{{track.get_absolute_url}}">Watch</a></div>
+                                <div class="col-7 bg-dark d-flex" ><audio  src="{{track.audio.url}}" controls></audio></div>
+                            </div>
 							<hr class="bg-light">
 							{%else%}
 							<h2 class="display-6 text-danger">{{track.name}}</h2>
 
-							<div class="row mx-auto pb-2">
-								<a class="btn btn-outline-light btn-lg text-center" type="button"
-									href="{{track.get_absolute_url}}">Play
-									Video</a>
-								
-							</div>
+							<div class="row mx-auto pb-2 ">
+                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
+                                    href="{{track.get_absolute_url}}">Watch</a></div>
+                                <div class="col-7 bg-dark d-flex" ><audio  src="{{track.audio.url}}" controls></audio></div>
+                            </div>
 							<hr class="bg-light">
 							{%endif%}
 							{%endfor%}
@@ -110,18 +108,18 @@
 						{%for event in events%}
 						{%if not event.expired%}
 						<!-- Show -->
-						<li class="d-flex flex-row align-items-center justify-content-start">
+						<li class="d-flex flex-row align-items-center justify-content-start table-responsive-sm">
 							<div>
 								<div class="show_date">{{event.date.day}}/{{event.date.month}}</div>
 							</div>
 							<div
-								class="show_info d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-start justify-content-center">
+								class="show_info d-flex flex-sm-row flex-column align-items-sm-center align-items-start justify-content-md-start justify-content-center">
 								<div class="show_name"><a href="#">{{event.title}}</a></div>
 								<div class="show_location">{{event.location}}</div>
 							</div>
 
-							<div class="ml-auto">
-								<div class="show_shop trans_200"><a href="{%url 'attend'%}">Attend</a></div>
+							<div class="ml-auto d-flex-inline">
+								<div class="show_shop trans_200 d-flex-inline"><a href="{%url 'attend'%}">Attend</a></div>
 							</div>
 
 						</li>

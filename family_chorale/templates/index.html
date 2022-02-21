@@ -104,11 +104,11 @@
 			<!-- Shows List -->
 			<div class="col-lg-8 order-lg-1 order-2 shows_list_col">
 				<div class="shows_list_container">
-					<ul class="shows_list">
+					<ul class="shows_list  table-responsive-sm">
 						{%for event in events%}
 						{%if not event.expired%}
 						<!-- Show -->
-						<li class="d-flex flex-row align-items-center justify-content-start table-responsive-sm">
+						<li class="d-flex flex-row align-items-center justify-content-start">
 							<div>
 								<div class="show_date">{{event.date.day}}/{{event.date.month}}</div>
 							</div>

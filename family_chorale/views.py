@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .models import Member,Track,Album,Leader,Gallery,Event,EventGoer
+from .models import Track,Album,Leader,Gallery,Event,EventGoer
 from django.views import generic
 from . import forms
+
 # Create your views here.
 def index(request):
     events = Event.objects.order_by('-date')

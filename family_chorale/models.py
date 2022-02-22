@@ -1,18 +1,39 @@
 from django.db import models
-from django.urls import reverse,reverse_lazy
+from django.urls import reverse
+from phonenumber_field.modelfields import PhoneNumberField
 from datetime import date as dt
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+import os
 
+def validate_age(value):
+    if value > 100:
+        raise ValidationError(
+            _('Too old to join'),
+        )
 
+def validate_pic_size(file):
+         if file:
+             if file.size > 5*1024*1024:
+                   raise ValidationError("File is too large ( > 5mb )")
+
+def validate_audio(file):
+         if file:
+             if file.size > 50*1024*1024:
+                   raise ValidationError("File is too large ( > 50mb )")
+
+             if not os.path.splitext(file.name)[1] in [".mp3",".wav" ,".aac"]:
+                   raise ValidationError("Audio file has to be an mp3 file")
 
 class Member(models.Model):
+    
     name = models.CharField(max_length=255, help_text='Enter your full name')
-    age = models.PositiveIntegerField(help_text='Enter your age')
-    phone = models.CharField(
-        max_length=10, help_text='Enter a number beginning with 07')
-    church = models.CharField(max_length=255, help_text='Church you belong to',null=True)
+    age = models.PositiveIntegerField(help_text='Enter your age',validators=[validate_age])
+    phone = PhoneNumberField()
+    church = models.CharField(max_length=255, help_text='Church you belong to')
     note =models.CharField(max_length=255, help_text="Voice note you play")
-    residence = models.CharField(max_length=255,null=True)
-    voice_sample = models.FileField(upload_to='media/sample/',null=True,help_text='sample of your voice')
+    residence = models.CharField(max_length=255)
+    voice_sample = models.FileField(upload_to='media/sample/',help_text='sample of your voice in aac or mp3 format',null=True)
     
     def get_absolute_url(self):
         return reverse('member-added')
@@ -25,7 +46,7 @@ class Album(models.Model):
     producer = models.CharField(max_length=255, help_text='Enter producer\'s name',null=True,default="The Family Chorale")
     release_date = models.DateField()
     album_art = models.ImageField(
-        default='media/album_art/default.png', upload_to='media/album_art/')
+        default='media/album_art/default.png', upload_to='media/album_art/',validators=[validate_pic_size])
     detail = models.TextField()
     feature = models.BooleanField(default=False)
 
@@ -48,7 +69,7 @@ class Track(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE,null=True)
     link = models.TextField(
         help_text='Enter the youtube video link')
-    audio = models.FileField(upload_to='media/audio/',null=True,blank=True)
+    audio = models.FileField(upload_to='media/audio/',null=True,blank=True,validators=[validate_audio])
     
     def get_absolute_url(self):
         return reverse('track-detail',  args=[str(self.id)])
@@ -59,7 +80,7 @@ class Track(models.Model):
 
 class Leader(models.Model):
     name = models.CharField(max_length=255, help_text='Enter your full name')
-    leaders_pic = models.ImageField(upload_to='media/leaders/' ,default='media/leaders/default.png')
+    leaders_pic = models.ImageField(upload_to='media/leaders/' ,default='media/leaders/default.png',validators=[validate_pic_size])
     position = models.CharField(max_length=255, help_text='Hierarchy',null=True)
     
     def __str__(self) -> str:
@@ -69,7 +90,7 @@ class Leader(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=200)
     poster = models.ImageField(
-        upload_to='posters/', default='posters/default.jpeg')
+        upload_to='posters/', default='posters/default.jpeg',validators=[validate_pic_size])
     description = models.TextField()
     date = models.DateField()
     start_time = models.TimeField(null=True)
@@ -91,7 +112,7 @@ class Event(models.Model):
 class Gallery(models.Model):
     event = models.ForeignKey(Event,on_delete=models.CASCADE, help_text='Event where picture was taken',null=True)
     picture = models.ImageField(upload_to='media/gallery/',
-                                help_text='upload picture')
+                                help_text='upload picture',validators=[validate_pic_size])
     feature = models.BooleanField(default=False)
 
     @property
@@ -106,12 +127,11 @@ class Gallery(models.Model):
 class EventGoer(models.Model):
     name = models.CharField(max_length=255, help_text='Enter your full name')
     age = models.PositiveIntegerField(help_text='Enter your age')
-    phone = models.CharField(
-        max_length=10, help_text='Enter a number beginning with 07',unique=True)
+    phone = PhoneNumberField()
     event = models.ForeignKey(Event,on_delete=models.CASCADE,null=True)
 
     def get_absolute_url(self):
-        return reverse('member-added')
+        return reverse('event-booked')
         
     def __str__(self) -> str:
         return self.name

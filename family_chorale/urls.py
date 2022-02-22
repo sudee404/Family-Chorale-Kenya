@@ -9,6 +9,7 @@ urlpatterns = [
     path('leaders/',views.LeaderListView.as_view(),name='leaders'),
     path('track/<int:pk>/',views.TrackDetailView.as_view(),name='track-detail'),
     path('become-a-member/',views.MemberCreateView.as_view(),name='member-add'),
-    path('members/',views.MemberAddedView.as_view(),name='member-added'),
+    path('become-a-member/success/',views.MemberAddedView.as_view(),name='member-added'),
+    path('attend-event/success/',views.EventBookedView.as_view(),name='event-booked'),
     path('attend-event/',views.EventGoerCreateView.as_view(),name='attend'),
 ]

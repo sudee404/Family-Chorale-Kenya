@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%load static%}
 {% load crispy_forms_tags %}
-{%block titlt%}<title>Recruitment</title>{%endblock%}
+{%block titlt%}<title>Events</title>{%endblock%}
 {%block link%}
 <link rel="stylesheet" type="text/css" href="{%static 'styles/about.css'%}">
 <link rel="stylesheet" type="text/css" href="{%static 'styles/about_responsive.css'%}">
@@ -62,8 +62,8 @@
     <br>
     <div class="mt-2 mb-4 text-white bg-dark rounded-3">
        <div class="container-fluid py-5  justify-content-center text-center">
-           <h1 class="display-5 fw-bold">Sign Up Successful</h1>
-           <p>Your details have been received. We will reach you with more information</p>
+           <h1 class="display-5 fw-bold">Booking Successful</h1>
+           <p>Your have successfully booked a seat at our upcoming event</p>
            <br>
            <a class="btn btn-success " type="button" href="{%url 'index'%}">Home</a>
        </div>

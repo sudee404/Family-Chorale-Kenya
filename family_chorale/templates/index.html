@@ -30,59 +30,80 @@
 
 			<!-- Featured Album Player -->
 			<div class="col-md-6 featured_album_col mr- justify-content-center">
-				{%if album.track_set.all%}
+				{%if album_tracks%}
 
 
 				<div class="single_players">
 
 					<div class="mt-2 mb-4 text-white bg-dark rounded-3">
-						<div class="container-fluid py-2">
-							{%for track in album.track_set.all%}
-							{%if track.audio%}
-							<h2 class="display-6 text-danger">{{track.name}}</h2>
+						<div class="container-fluid text-primary bg-secondary justify-content-center">
+							<br>
+							<h2 class="mx-auto text-center mx-1 text-danger" style="font-variant: small-caps;">
+								{{album.name}}</h2>
+							<br>
+							<div class="accordion " id="accordionExample">
+								<div class="card bg-secondary">
+									{%for track in album_tracks%}
+									<div class="card-header" id="headingOne">
+										<h2 class="mb-0 row h-10 justify-content-center mx-auto">
+											<span class="col-2 p-0"><button class="btn btn-link btn-bg text-left"
+													type="button" data-toggle="collapse"
+													data-target="#track{{track.id}}" aria-expanded="true"
+													aria-controls="track{{track.id}}"><i id="play" class="fa fa-play text-danger"
+														aria-hidden="true"></i></button></span>
+											<span class="col-8 text-light text-start mx-auto pt-3"
+												style="font-size:large">{{track.name}}</span>
 
-							<div class="row mx-auto pb-2 ">
-                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
-                                    href="{{track.get_absolute_url}}">Watch</a></div>
-                                <div class="col-7 bg-dark d-flex" ><audio  src="{{track.audio.url}}" controls></audio></div>
-                            </div>
-							<hr class="bg-light">
-							{%else%}
-							<h2 class="display-6 text-danger">{{track.name}}</h2>
+											<span class=" col-2 mx-auto justify-content-start"><a
+													class="btn btn-primary btn-sm p-1 border border-secondary rounded-6"
+													href="{{track.get_absolute_url}}" role="button">Watch</a></span>
+											<button class="btn btn-link btn-block text-left" type="button"
+												data-toggle="collapse" data-target="#track{{track.id}}"
+												aria-expanded="true" aria-controls="track{{track.id}}">
 
-							<div class="row mx-auto pb-2 ">
-                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
-                                    href="{{track.get_absolute_url}}">Watch Video</a></div>
-                                <div class="col-7 bg-dark d-flex" >No Audio File</audio></div>
-                            </div>
-							<hr class="bg-light">
-							{%endif%}
-							{%endfor%}
+											</button>
+										</h2>
+									</div>
+									<div id="track{{track.id}}" class="collapse hide" aria-labelledby="headingOne"
+										data-parent="#accordionExample">
+										<div class="card-body">
+											<audio src="{{track.audio.url}}" class="bg-light col-12" controls></audio>
+										</div>
+									</div>
+
+									{%endfor%}
+
+
+
+								</div>
+							</div>
 						</div>
-					</div>
-
-
-				</div>
-
-
-
-				{%else%}
-				<br>
-				<br>
-				<div class="container">
-					<div class="jumbotron bg-dark">
-						<h1 class="display-4 text-warning">No audio records</h1>
-						<p class="lead">There are no audio records currently on the system.</p>
-						<hr class="my-4">
-
 
 					</div>
 				</div>
-				{%endif%}
+
+
 			</div>
 
+
+
+			{%else%}
+			<br>
+			<br>
+			<div class="container">
+				<div class="jumbotron bg-dark">
+					<h1 class="display-4 text-warning">No audio records</h1>
+					<p class="lead">There are no audio records currently on the system.</p>
+					<hr class="my-4">
+
+
+				</div>
+			</div>
+			{%endif%}
 		</div>
+
 	</div>
+</div>
 </div>
 
 <!-- Shows -->
@@ -119,7 +140,8 @@
 							</div>
 
 							<div class="ml-auto d-flex-inline">
-								<div class="show_shop trans_200 d-flex-inline"><a href="{%url 'attend'%}">Attend</a></div>
+								<div class="show_shop trans_200 d-flex-inline"><a href="{%url 'attend'%}">Attend</a>
+								</div>
 							</div>
 
 						</li>
@@ -166,18 +188,9 @@
 						</div>
 					</div>
 					<div class="artist_text">
-						<p> In vitae nisi aliquam, scelerisque leo a, volutpat sem. Vivamus rutrum dui fermentum
-							eros hendrerit, id lobortis leo volutpat. Maecenas sollicitudin est in libero
-							pretium
-							interdum. Nullam volutpat dui sem, ac congue purus luctus nec. Curabitur luctus
-							luctus
-							erat, sit amet facilisis quam congue quis. Quisque ornare luctus erat id dignissim.
-							Nullam ac nunc quis ex porttitor luctus.</p>
-						<p>Integer sed facilisis eros. In iaculis rhoncus velit in malesuada. In hac habitasse
-							platea dictumst. Fusce erat ex, consectetur sit amet ornare suscipit, porta et erat.
-							Donec nec nisi in nibh commodo laoreet. Mauris dapibus justo ut feugiat malesuada.
-							Fusce
-							ultricies ante tortor, non vestibulum est feugiat ut.</p>
+						<p> We are a Gospel Choir group based in South Nyanza, Kisii to be precise. We organize and
+							attend various events around the country. Feel free to ask questions using the contact
+							information given below</p>
 					</div>
 					<div class="artist_sig"><img src="{%static 'images/sig.png'%}" alt=""></div>
 

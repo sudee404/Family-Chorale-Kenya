@@ -22,12 +22,12 @@ def validate_audio(file):
              if file.size > 50*1024*1024:
                    raise ValidationError("File is too large ( > 50mb )")
 
-             if not os.path.splitext(file.name)[1] in [".mp3",".wav" ,".aac"]:
+             if not os.path.splitext(file.name)[1] in [".mp3",".wav" ,".aac",".MP3",".WAV" ,".AAC"]:
                    raise ValidationError("Audio file has to be an mp3 file")
 
 class Member(models.Model):
     
-    name = models.CharField(max_length=255, help_text='Enter your full name')
+    name = models.CharField(max_length=255, help_text='Enter your full name',unique=True)
     age = models.PositiveIntegerField(help_text='Enter your age',validators=[validate_age])
     phone = PhoneNumberField()
     church = models.CharField(max_length=255, help_text='Church you belong to')
@@ -42,7 +42,7 @@ class Member(models.Model):
 
 
 class Album(models.Model):
-    name = models.CharField(max_length=255, help_text='Enter album name')
+    name = models.CharField(max_length=255, help_text='Enter album name',unique=True)
     producer = models.CharField(max_length=255, help_text='Enter producer\'s name',null=True,default="The Family Chorale")
     release_date = models.DateField()
     album_art = models.ImageField(
@@ -65,7 +65,7 @@ class Album(models.Model):
 
 
 class Track(models.Model):
-    name = models.CharField(max_length=255, help_text="Track's name")
+    name = models.CharField(max_length=255, help_text="Track's name",unique=True)
     album = models.ForeignKey(Album, on_delete=models.CASCADE,null=True)
     link = models.TextField(
         help_text='Enter the youtube video link')
@@ -79,7 +79,7 @@ class Track(models.Model):
 
 
 class Leader(models.Model):
-    name = models.CharField(max_length=255, help_text='Enter your full name')
+    name = models.CharField(max_length=255, help_text='Enter your full name',unique=True)
     leaders_pic = models.ImageField(upload_to='media/leaders/' ,default='media/leaders/default.png',validators=[validate_pic_size])
     position = models.CharField(max_length=255, help_text='Hierarchy',null=True)
     
@@ -88,7 +88,7 @@ class Leader(models.Model):
 
 
 class Event(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200,unique=True)
     poster = models.ImageField(
         upload_to='posters/', default='posters/default.jpeg',validators=[validate_pic_size])
     description = models.TextField()
@@ -112,7 +112,7 @@ class Event(models.Model):
 class Gallery(models.Model):
     event = models.ForeignKey(Event,on_delete=models.CASCADE, help_text='Event where picture was taken',null=True)
     picture = models.ImageField(upload_to='media/gallery/',
-                                help_text='upload picture',validators=[validate_pic_size])
+                                help_text='upload picture',validators=[validate_pic_size],unique=True)
     feature = models.BooleanField(default=False)
 
     @property

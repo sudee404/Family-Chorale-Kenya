@@ -76,57 +76,55 @@
 
             <!-- Single Content -->
             <div class="col-lg-7 single_content_col">
-                <div class="single_content">
-                    <div class="single_text">
-                        <p> {{album.detail}}</p>
-                    </div>
-                    <div class="single_players"></div>
-                    {%if album.track_set.all%}
-                    {%for track in album.track_set.all%}
-                    {%if track.audio%}
-                    <div class="mt-2 mb-4 text-white bg-dark rounded-3">
-                        <div class="container-fluid py-2 ">
-                            <h2 class="display-6 text-danger">{{track.name}}</h2>
-                            <hr class="bg-light">
-                            <div class="row mx-auto pb-2 ">
-                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
-                                        href="{{track.get_absolute_url}}">Watch</a></div>
-                                <div class="col-7 bg-dark d-flex"><audio src="{{track.audio.url}}" controls></audio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {%else%}
-                    <div class="mt-2 mb-4 text-white bg-dark rounded-3">
-                        <div class="container-fluid py-2 ">
-                            <h2 class="display-6 text-danger">{{track.name}}</h2>
-                            <hr class="bg-light">
-                            <div class="row mx-auto pb-2 ">
-                                <div><a class="btn btn-outline-warning btn-lg text-center d-flex-inline" type="button"
-                                        href="{{track.get_absolute_url}}">Watch Video</a></div>
-                                <div class="col-7 bg-dark d-flex"><span>No audio file available</span></audio>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {%endif%}
+                <div class="single_players">
 
+					<div class="mt-2 mb-4 text-white bg-dark rounded-3">
+						<div class="container-fluid text-primary bg-secondary justify-content-center">
+							<br>
+							<h2 class="mx-auto text-center mx-1 text-warning" style="font-variant: small-caps;">
+								Tracks</h2>
+							<br>
+							<div class="accordion " id="accordionExample">
+								<div class="card bg-secondary">
+									{%for track in album.track_set.all%}
+									<div class="card-header" id="headingOne">
+										<h2 class="mb-0 row h-10 justify-content-center mx-auto">
+											<span class="col-2 p-0"><button class="btn btn-link btn-bg text-left"
+													type="button" data-toggle="collapse"
+													data-target="#track{{track.id}}" aria-expanded="true"
+													aria-controls="track{{track.id}}"><i id="play" class="fa fa-play "
+														aria-hidden="true"></i></button></span>
+											<span class="col-8 text-light text-start mx-auto pt-3"
+												style="font-size:large">{{track.name}}</span>
 
-                    {%endfor%}
-                </div>
-                {%else%}
-                <br>
-                <br>
-                <div class="container">
-                    <div class="jumbotron bg-dark">
-                        <h1 class="display-4 text-warning">No audio records</h1>
-                        <p class="lead">There are no audio records currently on the system.</p>
-                        <hr class="my-4">
+											<span class=" col-2 mx-auto justify-content-start"><a
+													class="btn btn-primary btn-sm p-1 border border-secondary rounded-6" href="{{track.get_absolute_url}}"
+													role="button">Watch</a></span>
+											<button class="btn btn-link btn-block text-left" type="button"
+												data-toggle="collapse" data-target="#track{{track.id}}"
+												aria-expanded="true" aria-controls="track{{track.id}}">
 
+											</button>
+										</h2>
+									</div>
+									<div id="track{{track.id}}" class="collapse hide" aria-labelledby="headingOne"
+										data-parent="#accordionExample">
+										<div class="card-body">
+											<audio src="{{track.audio.url}}" class="bg-light col-12"
+													controls></audio>
+										</div>
+									</div>
 
-                    </div>
-                </div>
-                {%endif%}
+									{%endfor%}
+									
+									
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
             </div>
         </div>
 
@@ -141,7 +139,6 @@
 
 {%endblock%}
 {%block script%}
-
 <script src="{%static 'plugins/fit-vids/jquery.fitvids.js'%}"></script>
 <script src="{%static 'js/single.js'%}"></script>
 {%endblock%}

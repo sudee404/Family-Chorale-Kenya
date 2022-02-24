@@ -1426,15 +1426,3 @@ section
 {
 	color: #FFFFFF;
 }
-.copyright_bar
-{
-	width: 100%;
-	height: 67px;
-	background: #000000;
-}
-.copyright_bar span
-{
-	font-size: 14px;
-	color: #6d6d6d;
-	line-height: 67px;
-}

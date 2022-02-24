@@ -8,6 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Family Chorale website">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+    <meta property="og:site_name" content="The Family Chorale" /> <!-- website name -->
+    <meta property="og:site" content="familychorale.pythonanywhere.com" /> <!-- website link -->
+    <meta property="og:title" content="" /> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="Family Chorale website" />
+    <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
     <link rel="stylesheet" type="text/css" href="{%static 'styles/bootstrap-4.1.2/bootstrap.min.css'%}">
     <link href="{%static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{%static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}">
@@ -98,7 +108,9 @@
                                     <div class="home_title">
                                         <h1>The Family Chorale</h1>
                                     </div>
-                                    <div class="home_link"><a href="https://www.youtube.com/channel/UCDokBn3IHwYCQc6QPVIhECA/videos">Subscribe on Youtube</a></div>
+                                    <div class="home_link"><a
+                                            href="https://www.youtube.com/channel/UCDokBn3IHwYCQc6QPVIhECA/videos">Subscribe
+                                            on Youtube</a></div>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +127,9 @@
                                     <div class="home_title">
                                         <h1>The Family Chorale</h1>
                                     </div>
-                                    <div class="home_link"><a href="https://m.facebook.com/Family-Chorale-KENYA-251244191951564/">Join us on Facebook</a></div>
+                                    <div class="home_link"><a
+                                            href="https://m.facebook.com/Family-Chorale-KENYA-251244191951564/">Join us
+                                            on Facebook</a></div>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +147,8 @@
                                     <div class="home_title">
                                         <h1>The Family Chorale</h1>
                                     </div>
-                                    <div class="home_link"><a href="https://twitter.com/familychorale">Follow Us On Twitter</a></div>
+                                    <div class="home_link"><a href="https://twitter.com/familychorale">Follow Us On
+                                            Twitter</a></div>
                                 </div>
                             </div>
                         </div>
@@ -154,9 +169,26 @@
     <footer class="footer align-items-center justify-content-center">
         <div class="mt-2 mb-4 text-white rounded-3 text-center">
             <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">Contact Us</h1>
+                <h1 class="display-5 fw-bold">Connect With Us</h1>
                 <hr class="bg-light">
-                <p>
+                <div class="container row justify-content-center text-center ">
+
+                    <span class="col-lg-1 col-sm-2">
+                        <h1><a href="https://m.facebook.com/Family-Chorale-KENYA-251244191951564/"><i
+                                    class="fa fa-facebook" aria-hidden="true"></i></a></h1> Facebook
+                    </span>
+                    <span class="col-lg-1 col-sm-2">
+                        <h1><a href="https://twitter.com/familychorale"><i class="fa fa-twitter"
+                                    aria-hidden="true"></i></a> </h1>Twitter
+                    </span>
+                    <span class="col-lg-1 col-sm-2">
+                        <h1><a href="https://www.youtube.com/channel/UCDokBn3IHwYCQc6QPVIhECA/videos"><i
+                                    class="fa fa-youtube-play" aria-hidden="true"></i></a></h1>Youtube
+                    </span>
+                </div>
+
+                <p class="container row justify-content-center text-center ">
+
                 <ul class="locarion_icon">
                     <li><i class="fa fa-phone-square" aria-hidden="true"></i> Phone : ( +254726953474 ) <em>-
                             Chairperson</em></li>
@@ -168,10 +200,14 @@
                 </p>
                 <p class="text-warning">
                     Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All rights reserved </a>
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
+                    made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="_blank">Colorlib</a>
+
                 </p>
 
             </div>
+
 
         </div>
 
@@ -199,7 +235,9 @@
                     audios[i].pause();
                 }
             }
-        }, true);</script>
+        }, true);
+    </script>
+    
     {%block script%}
     <script src="{%static 'js/custom.js'%}"></script>
     {%endblock%}
